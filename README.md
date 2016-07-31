@@ -38,9 +38,9 @@ As a user:
 
 ## Modeling our data
 **Post**
-	img:string
+	post_img:string
 	title:string
-	content:string
+	content:text
 
 **Category**
 	name:string
