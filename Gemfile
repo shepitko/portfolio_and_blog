@@ -17,8 +17,13 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-
 end
+
+group :test do
+  gem 'ffaker'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+end 
 
 group :development do
   gem 'pry'
