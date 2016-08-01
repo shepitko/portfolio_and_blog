@@ -31,7 +31,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-webkit'
 end
-
+gem "erb2haml", :group => :development
 group :development do
   gem 'pry'
   gem 'web-console'
