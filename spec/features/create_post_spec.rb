@@ -7,6 +7,7 @@ feature 'Create post', %q{
 } do
   let(:user){ create(:user) }
   let(:admin){ create(:admin) }
+  
   context 'does not see link "create post"' do
     scenario 'non-registered user' do
       visit posts_path
@@ -26,8 +27,9 @@ feature 'Create post', %q{
 
     fill_in 'Title', with: 'test title'
     fill_in 'Content', with: 'test content'
+    fill_in 'Post img', with: '/test/path/img.jpg'
     click_on 'Create'
-    expect(page).to have_content('Your post successfully created.')
+    expect(page).to have_content('Post was successfully created.')
   end
 
   context 'access to create post page' do

@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :load_post, only: [:show, :edit, :update, :destroy]
-  
+  before_action :authorize_admin, except: [:show, :index]
+  respond_to :html
+  responders :flash
   def index
     @posts = Post.all
   end
@@ -18,7 +20,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to @post
+      respond_with @post
     else
       render :new
     end
@@ -43,5 +45,13 @@ class PostsController < ApplicationController
 
   def load_post
     @post = Post.find(params[:id])
+  end
+
+  def authorize_admin
+    if user_signed_in?
+      redirect_to posts_path, alert: 'Admins only!' unless current_user.admin?
+    else
+      redirect_to posts_path, alert: 'Admins only!'
+    end
   end
 end
