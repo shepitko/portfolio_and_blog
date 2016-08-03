@@ -36,6 +36,6 @@ class PostsController < ApplicationController
   end
 
   def authorize_admin
-    redirect_to posts_path, alert: 'Admins only!' unless user_signed_in? && current_user.admin?
+    redirect_to posts_path, alert: 'Admins only!' unless current_user.try(:admin)
   end
 end
