@@ -8,7 +8,7 @@ feature 'User sign in' do
   scenario 'registered user ' do 
     sign_in_with(user.email, user.password)
     expect(page).to have_content('Signed in successfully')
-    #expect(page).to have_content('logout')
+    expect(page).to have_content('logout')
     expect(current_path).to eq(root_path)
   end
 
