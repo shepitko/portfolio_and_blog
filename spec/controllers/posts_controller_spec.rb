@@ -57,11 +57,12 @@ RSpec.describe PostsController, type: :controller do
 
     describe 'POST #create' do
       context 'with valid attributes' do
+        let(:valid_attr){ {title: 'sdfsdf', content:'sdfsdf', img: fixture_file_upload('img/img_file.png', 'image/png')} }
         it 'saves the new post in the database' do
-          expect { post :create, params: {post: attributes_for(:post)} }.to change(Post, :count).by(1)
+          expect { post :create, params: { post: valid_attr } }.to change(Post, :count).by(1)
         end
         it 'redirect to show page' do
-          post :create, params: {post: attributes_for(:post)}
+          post :create, params: {post: valid_attr}
           expect(response).to redirect_to(post_path(assigns(:post)))
         end
       end
@@ -78,17 +79,19 @@ RSpec.describe PostsController, type: :controller do
 
     describe 'PATCH #update' do
       let(:post){ create(:post) }
+      let(:edit_post){ create(:post) }
       context 'valid attributes' do
         it 'assigns the requested post to @post' do
           patch :update, params: { id: post, post: attributes_for(:post) }
           expect(assigns(:post)).to eq(post)
         end
         it 'changes post attributes' do
-          patch :update, params: { id: post, post: {post_img: '/new/path', title:'new title', content: 'new content'} }
+          new_post_params = {img_file_name: edit_post.img_file_name, title: edit_post.title, content: edit_post.content}
+          patch :update, params: { id: post, post: new_post_params }
           post.reload
-          expect(post.post_img).to eq('/new/path')
-          expect(post.title).to eq('new title')
-          expect(post.content).to eq('new content')
+          expect(post.img_file_name).to eq(edit_post.img_file_name)
+          expect(post.title).to eq(edit_post.title)
+          expect(post.content).to eq(edit_post.content)
         end
         it 'redirect to the updated post' do
           patch :update, params: { id: post, post: attributes_for(:post) }
@@ -101,7 +104,7 @@ RSpec.describe PostsController, type: :controller do
 
         it 'does not changes post attributes' do
           post.reload
-          expect(post.post_img).to_not eq '/new/path'
+          expect(post.img).to_not eq '/new/path'
           expect(post.title).to_not eq 'new title'
           expect(post.content).to_not eq 'new content'
         end
