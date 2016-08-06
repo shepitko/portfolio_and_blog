@@ -27,7 +27,7 @@ feature 'Create post', %q{
 
     fill_in 'Title', with: 'test title'
     fill_in 'Content', with: 'test content'
-    fill_in 'Post img', with: '/test/path/img.jpg'
+    attach_file 'Img', "#{Rails.root}/spec/fixtures/img/img_file.png"
     click_on 'Create'
     expect(page).to have_content('Post was successfully created.')
   end
