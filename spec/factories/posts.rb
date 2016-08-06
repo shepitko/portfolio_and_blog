@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :post do
-    post_img { FFaker::Avatar.image }
+    img_file_name 'post-controller-valid.jpg'
     title { FFaker::CheesyLingo.title }
     content { FFaker::HTMLIpsum.body }
   end
   factory :invalid_post, class: Post do
-    post_img nil
+    img_file_name nil
     title nil
     content nil
   end
