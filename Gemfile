@@ -9,6 +9,11 @@ gem 'coffee-rails', '~> 4.2'
 gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
+gem 'ckeditor'
+gem "paperclip", "~> 5.0.0"
+gem 'aws-sdk-rails'
+gem 'aws-sdk', '~> 2'
+gem 'reform'
 gem "responders"
 
 gem 'jquery-rails'
@@ -22,6 +27,7 @@ gem 'devise'
 gem 'omniauth'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'rails-controller-testing'
