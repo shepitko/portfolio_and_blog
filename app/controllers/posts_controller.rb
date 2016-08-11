@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:img, :title, :content)
+    params.require(:post).permit(:img, :title, :content, {category_ids: []})
   end
 
   def load_post
