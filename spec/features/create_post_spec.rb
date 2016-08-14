@@ -9,14 +9,14 @@ feature 'Create post', %q{
   let(:admin){ create(:admin) }
   
   context 'does not see link "create post"' do
-    scenario 'non-registered user' do
+    after{
       visit posts_path
       expect(page).to_not have_content('Create new post')
+    }
+    scenario 'non-registered user' do
     end
     scenario 'user has not admin role' do
       login_as user
-      visit posts_path
-      expect(page).to_not have_content('Create new post')
     end
   end
 
