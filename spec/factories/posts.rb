@@ -3,6 +3,7 @@ FactoryGirl.define do
     img_file_name 'post-controller-valid.jpg'
     title { FFaker::CheesyLingo.title }
     content { FFaker::HTMLIpsum.body }
+    categories{[FactoryGirl.create(:category)]}
   end
   factory :invalid_post, class: Post do
     img_file_name nil

@@ -11,5 +11,7 @@ RSpec.describe Post, type: :model do
                   rejecting('text/plain', 'text/xml') }
     it { should validate_attachment_size(:img).
                 less_than(2.megabytes) }
+
+    it { should have_and_belong_to_many(:categories) }
   end
 end
