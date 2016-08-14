@@ -1,14 +1,8 @@
-- @post.errors.full_messages.each do |msg|
-  = msg
 = simple_form_for(@post) do |f|
-  = f.error_notification
-
   .form-inputs
     = f.input :title
     = f.input :content, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' }}
     = f.input :img, as: :file
-    /= f.simple_fields_for :categories do |ff|
-    /= f.collection_select :category_ids, Category.all, :id, :name, input_html: { multiple: true }
     = f.association :categories, include_blank: false
   .form-actions
     = f.button :submit

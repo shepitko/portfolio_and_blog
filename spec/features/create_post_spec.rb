@@ -20,16 +20,29 @@ feature 'Create post', %q{
     end
   end
 
-  scenario 'admin user can create post' do
-    login_as admin
-    visit posts_path  
-    click_on 'Create new post'
+  context 'admin user' do
+    let!(:categories){ create_list(:category, 5) }
+    
+    before do
+      login_as admin
+      visit posts_path
+      click_on 'Create new post'
+    end
 
-    fill_in 'Title', with: 'test title'
-    fill_in 'Content', with: 'test content'
-    attach_file 'Img', "#{Rails.root}/spec/fixtures/img/img_file.png"
-    click_on 'Create'
-    expect(page).to have_content('Post was successfully created.')
+    scenario 'can create post' do
+      fill_in 'Title', with: 'test title'
+      fill_in 'Content', with: 'test content'
+      attach_file 'Img', "#{Rails.root}/spec/fixtures/img/img_file.png"
+      select categories.first.name, from: 'Categories'
+      click_on 'Create'
+      expect(page).to have_content('Post was successfully created.')
+    end
+    scenario 'can\'t create when field be blank' do
+      fill_in 'Title', with: ''
+      fill_in 'Content', with: ''
+      click_on 'Create'
+      expect(page).to have_content('can\'t  be blank')
+    end
   end
 
   context 'access to create post page' do
