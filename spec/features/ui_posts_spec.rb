@@ -12,9 +12,9 @@ feature 'UI for pages posts', %q{
   context 'does not see link "create post"' do
     after{
       visit posts_path
-      expect(page).to_not have_content('Create new post')
-      expect(page).to_not have_content('edit post')
-      expect(page).to_not have_content('delete post')
+      expect(page).to_not have_link('Create new post')
+      expect(page).to_not have_link('edit')
+      expect(page).to_not have_link('delete')
     }
     scenario 'non-registered user' do
     end
@@ -26,9 +26,9 @@ feature 'UI for pages posts', %q{
   scenario 'as admin I can see manage link' do
     login_as admin
     visit posts_path
-    expect(page).to have_content('Create new post')
-    expect(page).to have_content('edit post')
-    expect(page).to have_content('delete post')
+    expect(page).to have_link('Create new post')
+    expect(page).to have_link('edit')
+    expect(page).to have_link('delete')
   end
   
   ##for edit and delete feathure_specs

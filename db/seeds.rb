@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create(email:'ya.shepitko@gmail.com', password:'12345678', admin:true)
+Category.create([{name:'Ruby'},{name:'Ruby On Rails'},{name:'Angular'},{name:'Ionic'}])

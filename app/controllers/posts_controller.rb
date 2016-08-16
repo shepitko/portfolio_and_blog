@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   
   def index
     @posts = Post.all
+    @categories = Category.all
+    respond_with @posts, @categories
   end
 
   def new
