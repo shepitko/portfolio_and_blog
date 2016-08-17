@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.configure do |config|
-  
+  Capybara.javascript_driver = :webkit
+  Capybara::Webkit.configure do |config|
+    config.allow_url("s3-us-west-2.amazonaws.com")
+  end
+  config.include Capybara::DSL
   config.include SessionHelpers, type: :feature
   
   config.use_transactional_fixtures = false
@@ -12,7 +16,14 @@ RSpec.configure do |config|
   
     # This part sets the default database cleaning strategy to be transactions.
     # Transactions are very fast, and for all the tests where they do work - that is, any test where the entire test runs in the RSpec process - they are preferable.
+    #DatabaseCleaner.strategy = :transaction
+  end
+  config.before(:each) do
     DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation
   end
   
   # These lines hook up database_cleaner around the beginning and end of each test,
