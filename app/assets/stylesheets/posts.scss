@@ -85,7 +85,7 @@
 .tags a:after {
   content: "";
   position: absolute;
-  top: 6px;
+  top: 9px;
   left: 2px;
   float: left;
   width: 5px;
@@ -95,6 +95,12 @@
   background: #fff;
   -webkit-box-shadow: -1px -1px 2px rgba(0,0,0,0.4);
   box-shadow: -1px -1px 2px rgba(0,0,0,0.4);
+}
+.left{
+  float:left;
+}
+.right{
+  float:right;
 }
 @media (max-width: 767px){
   .post {

@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authorize_admin, except: [:show, :index]
   
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page])
     @categories = Category.all
     respond_with @posts, @categories
   end
