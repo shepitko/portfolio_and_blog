@@ -1,2 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'posts';
+article, aside, details, figcaption, figure, footer, header, hgroup, main, section, summary {
+    display: block;
+}

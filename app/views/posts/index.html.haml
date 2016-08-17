@@ -1,3 +1,35 @@
-= link_to "Create new post", new_post_path, :class => 'btn btn-success' if admin_user?
-= @posts.each do |post|
-  = post.title
+.text-center
+  %h2 Blog
+  = link_to "Create new post", new_post_path, :class => 'btn btn-success btn-xs' if admin_user?
+  .nav-categories
+  - @categories.each do |category|
+    != " &#9672 "
+    = link_to category.name
+%hr
+- @posts.each do |post|
+  .panel.panel-default.post
+    .image
+      = image_tag post.img.url(:thumb)
+    .content
+      %header.header
+        = link_to post.title, post_path(post)
+      = post.created_at.strftime('%Y-%m-%d %H:%M')
+      .summary
+        = truncate(post.content.gsub(/(<[^>]+>)/, ''), length: 250, escape: false, separator: ' '){ link_to 'read more',  post_path(post) }
+      %footer.footer
+        .tags-block
+          .tags
+            - post.categories.each do |tag|
+              = link_to tag.name
+        - if admin_user?
+          .manage-link
+            = link_to 'edit', edit_post_path(post)
+            |
+            = link_to 'delete'
+.row
+  .col-md-12
+    %ul.pager
+      %li.previous
+        = link_to_previous_page @posts, '←Previous Page'
+      %li.next
+        = link_to_next_page @posts, "Next Page→"
