@@ -18,7 +18,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  Aws.config.update(stub_responses: true) 
+  Aws.config.update(stub_responses: true)
   config.include Paperclip::Shoulda::Matchers
   config.include FactoryGirl::Syntax::Methods
   config.before(:all) do
