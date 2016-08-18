@@ -30,36 +30,4 @@ feature 'UI for pages posts', %q{
     expect(page).to have_link('edit')
     expect(page).to have_link('delete')
   end
-  
-  ##for edit and delete feathure_specs
-  
-  # context 'manage posts' do
-  #   context 'as admin' do
-  #     before{ login_as admin }
-
-  #     scenario 'have access to edit post' do
-  #       visit edit_post_path(posts.first)
-  #       expect(current_path).to eq(edit_post_path(posts.first))
-  #     end
-  #   end
-  #   context 'as user' do
-  #     before { login_as user }
-  #     after do
-  #       expect(current_path).to eq(posts_path)
-  #       expect(current_path).to have_content('Admins only')
-  #     end
-  #     scenario 'haven\'t access to edit post' do
-  #       visit edit_post_path(posts.first)
-  #     end
-  #   end
-  #   context 'as guest' do
-  #     after do
-  #       expect(current_path).to eq(posts_path)
-  #       expect(current_path).to have_content('Admins only')
-  #     end
-  #     scenario 'haven\'t access to edit post' do
-  #       visit edit_post_path(posts.first)
-  #     end
-  #   end
-  # end
 end
