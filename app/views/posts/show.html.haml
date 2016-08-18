@@ -1,0 +1,26 @@
+.row
+  .col-md-12
+    = link_to '< back to blog', posts_path, class: 'btn btn-default btn-xs'
+  .col-md-12
+    %h1.text-center
+      = @post.title
+  .col-md-12.text-center
+    Post by 
+    %span
+      Shepitko Yuriy 
+    • on
+    = @post.created_at.strftime('%Y-%m-%d %H:%M')
+    • 0 comments
+%hr
+.row
+  .col-md-12
+    != @post.content
+.row
+  .col-md-12
+    Categories: 
+    - @post.categories.each do |category|
+      = link_to "##{category.name}", posts_path
+.row
+  .col-md-12
+  %hr
+    %h3.text-center Comments block

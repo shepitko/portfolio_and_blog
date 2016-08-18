@@ -1,6 +1,6 @@
 .text-center
   %h2 Blog
-  = link_to "Create new post", new_post_path, :class => 'btn btn-success btn-xs' if admin_user?
+  = link_to "Create new post", new_post_path, class: 'btn btn-success btn-xs' if admin_user?
   .nav-categories
   - @categories.each do |category|
     != " &#9672 "
